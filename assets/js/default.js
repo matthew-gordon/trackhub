@@ -1,2 +1,7 @@
 'use strict';
-console.log('Hello world!');
+$(document).ready(function(){
+
+  // Responsive menu
+  $(".button-collapse").sideNav();
+
+});
