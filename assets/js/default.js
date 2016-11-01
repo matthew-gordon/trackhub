@@ -1,5 +1,6 @@
 'use strict';
 $(document).ready(function(){
+var projBoard = $('#projectBoard');
 var createProj = $('#createProj');
 console.log(createProj);
 
@@ -11,7 +12,15 @@ console.log(createProj);
 
   // Create new project card
   createProj.click(function(){
-    $('#projectBoard').append(
+
+    //Close project info
+    $('#modal1').closeModal();
+
+    // Close project menu
+    $('.fixed-action-btn').closeFAB();
+
+    // Add project card to board
+    projBoard.append(
       '<div class="col s12 m4 l4">' +
       '<div class="card">' +
       '<div class="card-image waves-effect waves-block waves-light">' +
