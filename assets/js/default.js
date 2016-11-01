@@ -2,6 +2,8 @@
 $(document).ready(function(){
 var projBoard = $('#projectBoard');
 var createProj = $('#createProj');
+var titleField = $('#project_title');
+var descriptionField = $('#textarea1');
 console.log(createProj);
 
   // Responsive menu
@@ -12,12 +14,18 @@ console.log(createProj);
 
   // Create new project card
   createProj.click(function(){
+    var projectTitle = titleField.val();
+    var projectDescription = descriptionField.val();
 
     //Close project info
     $('#modal1').closeModal();
 
     // Close project menu
     $('.fixed-action-btn').closeFAB();
+
+    // Clear project form fields
+    titleField.val('');
+    descriptionField.val('');
 
     // Add project card to board
     projBoard.append(
@@ -28,16 +36,18 @@ console.log(createProj);
       '</div><!-- card-image -->' +
       '<div class="card-content">' +
       '<span class="card-title activator grey-text text-darken-4">' +
-      'projectTitle'+
+      projectTitle +
       '<i class="material-icons right">more_vert</i></span>' +
       '</div><!-- card-content -->' +
       '<div class="card-reveal">' +
       '<div class="card-title">' +
       '<span class="card-title grey-text text-darken-4">' +
-      'projectTitle '+
+      projectTitle +
       '<i class="material-icons right">close</i></span>' +
-      '</div><!-- card-title -->' +
-      '</div><!-- card-reveal -->' +
+      '</div>' +
+      '<div class="card-content">' +
+      '<p>' + projectDescription + '</p>' +
+      '</div><!-- card-content -->' +
       '</div><!-- card -->' +
       '</div><!-- col -->'
     );
