@@ -6,6 +6,9 @@ console.log(createProj);
   // Responsive menu
   $(".button-collapse").sideNav();
 
+  // Modal trigger
+  $('.modal-trigger').leanModal();
+
   // Create new project card
   createProj.click(function(){
     $('#projectBoard').append(
