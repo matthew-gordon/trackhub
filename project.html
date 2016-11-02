@@ -41,8 +41,16 @@
   <main>
     <section class="section">
       <article class="container">
-        <div class="row" id="projectBoard">
-          <!-- dynamic-content -->
+        <div class="row" id="projectManager">
+          <div class="col m4 l4">
+            <p>todo</p>
+          </div>
+          <div class="col m4 l4">
+            <p>doing</p>
+          </div>
+          <div class="col m4 l4">
+            <p>done</p>
+          </div>
         </div><!-- row -->
       </article> <!-- container -->
     </section><!-- section -->
@@ -53,38 +61,6 @@
   <footer>
     <section class="footer"></section>
   </footer>
-
-  <!-- MODALS/MISC
-  ===================================================== -->
-
-    <!-- project menu -->
-    <div class="fixed-action-btn vertical click-to-toggle">
-      <a class="btn-floating btn-large teal lighten-1">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul>
-        <li><a class="btn-floating blue lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modal1"><i class="material-icons">add</i></a></li>
-        <li><a class="btn-floating green darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Import from Github"><i class="material-icons" id="importProj">import_export</i></a></li>
-      </ul>
-    </div>
-
-    <!-- project-info -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <h4>New Project</h4>
-          <div class="input-field col s6">
-            <input id="project_title" type="text" class="validate">
-            <label for="project_title">Project Title</label>
-          </div>
-          <div class="input-field col s6">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Project Description</label>
-          </div>
-      </div>
-      <div class="modal-footer left-align">
-        <a class="waves-effect waves-light btn" id="createProj">Create Project</a>
-      </div>
-    </div>
 
 
   <!-- jQuery -->

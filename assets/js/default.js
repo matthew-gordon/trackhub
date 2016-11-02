@@ -5,7 +5,9 @@ var createProj = $('#createProj');
 var titleField = $('#project_title');
 var descriptionField = $('#textarea1');
 var taskList = $('#toDo');
-var addBtn = $('#addTask');
+var addTask= $('#addTask');
+var removeTask = $('#removeTask');
+
 
   // Responsive menu
   $(".button-collapse").sideNav();
@@ -51,24 +53,12 @@ var addBtn = $('#addTask');
       '</div><!-- card-content -->' +
       '<div class="card-action">' +
       '<p class="center">' +
-      '<a class="btn modal-trigger teal lighten-1" href="#modalTasks">MANAGE TASKS</a>' +
+      '<a class="btn modal-trigger teal lighten-1" href="project.html">MANAGE PROJECT</a>' +
       '</p>' +
       '</div>' +
       '</div><!-- card -->' +
       '</div><!-- col -->'
     );
-
-    // Open tasks manager
-     $('.modal-trigger').leanModal();
   });
-
-  // Add tasks to task list
-    addBtn.click(function(){
-      taskList.append(
-        '<li class="collection-item">' +
-            '<div>Task</div>' +
-        '</li>'
-      );
-    });
 
 }); // document.ready
