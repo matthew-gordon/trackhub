@@ -4,7 +4,9 @@ var projBoard = $('#projectBoard');
 var createProj = $('#createProj');
 var titleField = $('#project_title');
 var descriptionField = $('#textarea1');
-var taskList = $('#toDo');
+var toDoList = $('#toDo>ul');
+var doingList = $('#doing>ul');
+var doneList = $('#done>ul');
 var addTask= $('#addTask');
 var removeTask = $('#removeTask');
 
@@ -59,6 +61,25 @@ var removeTask = $('#removeTask');
       '</div><!-- card -->' +
       '</div><!-- col -->'
     );
+  });
+
+  // Add tasks to task list
+  addTask.click(function(e){
+    var id = e.target;
+    console.log(id);
+    // if() {
+      toDoList.append(
+        '<li class="collection-item avatar">' +
+        '<i class="material-icons circle green">list</i>' +
+        '<span class="title">Title</span>' +
+        '<p>First Line <br>' +
+        '   Second Line' +
+        '</p>' +
+        '<a href="#!" class="secondary-content">' +
+        '<i class="material-icons">grade</i></a>' +
+        '</li>'
+      );
+    // }
   });
 
 }); // document.ready

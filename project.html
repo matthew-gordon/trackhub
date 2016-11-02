@@ -41,17 +41,36 @@
   <main>
     <section class="section">
       <article class="container">
+        <div class="center">
+          <!-- dynamic-conent -->
+        </div>
         <div class="row" id="projectManager">
-          <div class="col m4 l4">
-            <p>todo</p>
-          </div>
-          <div class="col m4 l4">
-            <p>doing</p>
-          </div>
-          <div class="col m4 l4">
-            <p>done</p>
-          </div>
+          <div class="col m4 l4" id="toDo">
+            <!-- ToDoList -->
+            <ul class="collection with-header">
+              <li class="collection-header"><h5>To Do</h5></li>
+              <!-- dynamic-content -->
+            </ul>
+
+          </div><!-- col -->
+          <div class="col m4 l4" id="doing">
+            <!-- doingList -->
+            <ul class="collection collection with-header">
+              <li class="collection-header"><h5>Doing</h5></li>
+              <!-- dynamic content -->
+            </ul>
+
+          </div><!-- col -->
+          <div class="col m4 l4" id ="done">
+            <!-- doneList -->
+            <ul class="collection collection with-header">
+              <li class="collection-header"><h5>Done</h5></li>
+              <!-- dynamic content -->
+            </ul>
+
+          </div><!-- col -->
         </div><!-- row -->
+          <button href="#" class="btn-floating green" id="addTask"><i class="material-icons">add</i></button>
       </article> <!-- container -->
     </section><!-- section -->
   </main>
