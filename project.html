@@ -19,34 +19,38 @@
   </head>
   <body>
 
-  <!-- NAVIGATION
-  ===================================================== -->
-  <header>
-    <nav class="teal lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">[ trackHub ]</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#">Home</a></li>
-        </ul>
+    <!-- NAVIGATION
+    ===================================================== -->
+    <header>
+      <nav class="teal lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">[ trackHub ]</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#">Home</a></li>
+          </ul>
 
-        <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-      </div><!-- nav-wrapper -->
-    </nav>
-  </header>
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div><!-- nav-wrapper -->
+      </nav>
+
+      <!-- PROJECT HEADER
+      ===================================================== -->
+      <section class="container">
+        <div class="center">
+          <h1 id="newProjTitle"><!-- dynamic content --></h1>
+          <p id="newProjDesc"><!-- dynamic content --></p>
+        </div>
+      </div>
+    </header>
 
   <!-- MAIN SECTION
   ===================================================== -->
   <main>
-    <section class="section">
-      <article class="container">
-        <div class="center">
-          <!-- dynamic-conent -->
-        </div>
-        <div class="row" id="projectManager">
+    <section class="row" id="projectManager">
           <div class="col m4 l4" id="toDo">
-            <!-- ToDoList -->
+            <!-- toDoList -->
             <ul class="collection with-header">
               <li class="collection-header"><h5>To Do</h5></li>
               <!-- dynamic-content -->
@@ -69,17 +73,8 @@
             </ul>
 
           </div><!-- col -->
-        </div><!-- row -->
-          <button href="#" class="btn-floating green" id="addTask"><i class="material-icons">add</i></button>
-      </article> <!-- container -->
-    </section><!-- section -->
+    </section><!-- row -->
   </main>
-
-  <!-- FOOTER
-  ===================================================== -->
-  <footer>
-    <section class="footer"></section>
-  </footer>
 
 
   <!-- jQuery -->

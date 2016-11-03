@@ -44,7 +44,7 @@
         <div class="row" id="projectBoard">
           <!-- dynamic-content -->
         </div><!-- row -->
-      </article> <!-- container -->
+      </article><!-- container -->
     </section><!-- section -->
   </main>
 
@@ -59,14 +59,20 @@
 
     <!-- project menu -->
     <div class="fixed-action-btn vertical click-to-toggle">
-      <a class="btn-floating btn-large teal lighten-1">
-        <i class="material-icons">menu</i>
+    <a class="btn-floating btn-large teal lighten-1">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating green lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modalProject"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating red lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Remove project" href="#modalDelete"><i class="material-icons">remove</i></a></li>
+    </ul>
+  </div>
+
+    <!-- <div class="fixed-action-btn">
+      <a class="btn-floating btn-large blue lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modalProject">
+        <i class="material-icons">add</i>
       </a>
-      <ul>
-        <li><a class="btn-floating blue lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modalProject"><i class="material-icons">add</i></a></li>
-        <li><a class="btn-floating green darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Import from Github"><i class="material-icons" id="importProj">import_export</i></a></li>
-      </ul>
-    </div>
+    </div> -->
 
     <!-- project-info -->
     <div id="modalProject" class="modal">
@@ -75,17 +81,66 @@
           <div class="input-field col s6">
             <input id="project_title" type="text" class="validate">
             <label for="project_title">Project Title</label>
-          </div>
+          </div><!-- input -->
           <div class="input-field col s6">
             <textarea id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Project Description</label>
-          </div>
-      </div>
+          </div><!-- input -->
+      </div><!-- modal-content -->
       <div class="modal-footer">
         <a class="waves-effect waves-light btn" id="createProject">Create Project</a>
-      </div>
-    </div>
+      </div><!-- modal-footer -->
+    </div><!-- modalProject -->
 
+    <!-- project-delete -->
+    <div id="modalDelete" class="modal">
+      <div class="modal-content">
+        <h4>Delete Project</h4>
+          <div class="input-field col s6">
+            <input id="delete_title" type="text" class="validate">
+            <label for="delete_title">Project Title</label>
+          </div><!-- input -->
+      </div><!-- modal-content -->
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn" id="deleteProject">Delete Project</a>
+      </div><!-- modal-footer -->
+    </div><!-- modalProject -->
+
+    <!-- project-manager -->
+    <div id="projectTasks" class="modal modalFull">
+      <div class="row center-align">
+        <div class="col m12 s12">
+          <a class="waves-effect waves-light btn" id="addTask">Add Task</a>
+          <a class="waves-effect waves-light btn" id="removeTask">remove task</a>
+        </div><!-- col -->
+      </div><!-- row -->
+        <div class="row" id="projectManager">
+              <div class="col m4 l4" id="taskList">
+                <!-- toDoList -->
+                <ul class="collection with-header">
+                  <li class="collection-header"><h5>To Do</h5></li>
+                  <!-- dynamic-content -->
+                </ul>
+
+              </div><!-- col -->
+              <div class="col m4 l4" id="doing">
+                <!-- doingList -->
+                <ul class="collection collection with-header">
+                  <li class="collection-header"><h5>Doing</h5></li>
+                  <!-- dynamic content -->
+                </ul>
+
+              </div><!-- col -->
+              <div class="col m4 l4" id ="done">
+                <!-- doneList -->
+                <ul class="collection collection with-header">
+                  <li class="collection-header"><h5>Done</h5></li>
+                  <!-- dynamic content -->
+                </ul>
+
+              </div><!-- col -->
+        </div><!-- row -->
+      </div><!-- modal -->
 
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

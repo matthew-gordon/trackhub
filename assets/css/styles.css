@@ -11,3 +11,8 @@ main {
 body {
   background: #fff;
 }
+
+.modalFull {
+  width: 100%;
+  height: 100vh;
+}
