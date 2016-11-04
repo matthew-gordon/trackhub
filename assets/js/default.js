@@ -78,18 +78,36 @@ var repo, project, contents_url, data;
       $('.modal-trigger').leanModal();
   });
 
-  //Add tasks to task list
+  // Add tasks to task list
   addTask.click(function(){
     var taskName = $('#taskName');
-      taskList.append(
-        '<li class="collection-item">' +
-        '<div>' +
-          taskName.val() +
-        '</div>' +
-        '</li>'
-      );
-      $('#taskInfo').closeModal();
-      taskName.val('');
+    var taskDesc = $('#taskDesc');
+    var filename = taskName.val();
+    var filemessage = "Added a new task, looks you're ... COMMITED ... to it..";
+    var filecontent = taskDesc.val();
+    var basecontent = btoa(filecontent);
+    var apiurl = data.users[0].projects.project.url.replace('{+path}',filename + '.md');
+    var filedata = '{"message":"'+filemessage+'","content":"'+basecontent+'"}';
+
+    $.ajax({
+        url: apiurl,
+        type: 'PUT',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
+        },
+        data: filedata
+    }).done(function(response) {
+        console.log(response);
+        taskList.append(
+          '<li class="collection-item">' +
+          '<div>' +
+            taskName.val() +
+          '</div>' +
+          '</li>'
+        );
+        $('#taskInfo').closeModal();
+        taskName.val('');
+    });
   });
 
   // Github Authorization
@@ -115,7 +133,7 @@ var repo, project, contents_url, data;
         projects : {}
       });
       localStorage.setItem("th_data", JSON.stringify(data));
-      location.href = "index.html";
+      location.href = "project.html";
     });
   }
 
@@ -125,7 +143,6 @@ var repo, project, contents_url, data;
       repo = titleField.val();
       project = descriptionField.val();
       repo = repo.replace(/\s+/g, '-');
-      console.log(repo);
       $.ajax({
         url: 'https://api.github.com/user/repos',
         type: 'POST',
@@ -135,12 +152,13 @@ var repo, project, contents_url, data;
         data: '{"name": ' + JSON.stringify(repo) + ',"description":' + JSON.stringify(project) + ',"homepage": "https://trackerApp.com","auto_init":true}'
       }).done(function(response) {
         contents_url = response.contents_url;
-
+        console.log(contents_url);
         // Create project
         data = JSON.parse(localStorage.getItem('th_data'));
         data.users[0].projects[repo] = {
             name : repo,
-            desc : project
+            desc : project,
+            url : contents_url
         };
         localStorage.setItem("th_data", JSON.stringify(data));
       });
@@ -224,4 +242,8 @@ var repo, project, contents_url, data;
     }
   }
 
+  $('#logOut').click(function(){
+    localStorage.clear();
+    location.href = "login.html";
+  });
 }); // document.ready

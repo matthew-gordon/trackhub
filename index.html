@@ -17,7 +17,7 @@
     <!-- custom css -->
     <link rel="stylesheet" href="assets/css/styles.css" media="screen">
   </head>
-  <body>
+<body>
 
   <!-- NAVIGATION
   ===================================================== -->
@@ -25,131 +25,94 @@
     <nav class="teal lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">[ trackHub ]</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#">Home</a></li>
+          <li><a href="login.html"><i class="material-icons">account_circle</i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Navbar Link</a></li>
+          <li><a href="index.html"><i class="material-icons">account_circle</i> Dashboard</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       </div><!-- nav-wrapper -->
     </nav>
   </header>
 
-  <!-- MAIN SECTION
-  ===================================================== -->
-  <main>
-    <section class="section">
-      <article class="container">
-        <div class="row" id="projectBoard">
-          <!-- dynamic-content -->
-        </div><!-- row -->
-      </article><!-- container -->
-    </section><!-- section -->
-  </main>
+  <div class="section no-pad-bot valign-wrapper overlay" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center white-text">[ trackHub ]</h1>
+    <div class="row center">
+      <h5 class="header col s12 light white-text">A modern project manager built for collaboration.</h5>
+    </div>
+    <div class="row center">
+      <a href="login.html" class="btn-large waves-effect waves-light teal lighten-1">Login</a>
+    </div>
+    <br><br>
 
-  <!-- FOOTER
-  ===================================================== -->
-  <footer>
-    <section class="footer"></section>
-  </footer>
+  </div>
+</div>
 
-  <!-- MODALS/MISC
-  ===================================================== -->
 
-    <!-- project menu -->
-    <div class="fixed-action-btn vertical click-to-toggle">
-    <a class="btn-floating btn-large teal lighten-1">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating green lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modalProject"><i class="material-icons">add</i></a></li>
-      <li><a class="btn-floating red lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Remove project" href="#modalDelete"><i class="material-icons">remove</i></a></li>
-    </ul>
+<div class="container">
+  <div class="section">
+
+    <!--   Icon Section   -->
+     <div class="row">
+       <div class="col s12 m4">
+         <div class="icon-block">
+           <h2 class="center light-blue-text"><i class="large material-icons">group</i></h2>
+           <h5 class="center">Collaborate effortlessly</h5>
+
+           <p class="light">Manage your team effectively, and worry about keeping them at work. We've got your project details handled. Create, update, read, or delete anything right from your project dashboard.</p>
+         </div>
+       </div>
+
+       <div class="col s12 m4">
+         <div class="icon-block">
+           <h2 class="center light-blue-text"><i class="large material-icons">build</i></h2>
+           <h5 class="center">Work from anywhere</h5>
+
+           <p class="light">No matter where you are, you have access to all of your projects directly from your Github account. Lost something you we're working on?</p>
+         </div>
+       </div>
+
+       <div class="col s12 m4">
+         <div class="icon-block">
+           <h2 class="center light-blue-text"><i class="large material-icons">accessibility</i></h2>
+           <h5 class="center">Easy to work with</h5>
+
+           <p class="light">Our simple and intuitive interface let's you focus on the things that matter, no more wrestling with your command line if you don't want to!</p>
+         </div>
+       </div>
+     </div>
+
+   </div>
+   <br><br>
+
+
   </div>
 
-    <!-- project-info -->
-    <div id="modalProject" class="modal">
-      <div class="modal-content">
-        <h4>New Project</h4>
-          <div class="input-field col s6">
-            <input id="project_title" type="text" class="validate">
-            <label for="project_title">Project Title</label>
-          </div><!-- input -->
-          <div class="input-field col s6">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Project Description</label>
-          </div><!-- input -->
-      </div><!-- modal-content -->
-      <div class="modal-footer">
-        <a class="waves-effect waves-light btn" id="createProject">Create Project</a>
-      </div><!-- modal-footer -->
-    </div><!-- modalProject -->
+  <div class="section">
 
-    <!-- add-task-->
-    <div id="taskInfo" class="modal">
-      <div class="modal-content">
-        <h4>Add task</h4>
-          <div class="input-field col s6">
-            <input id="taskName" type="text" class="validate">
-            <label for="taskName">Task Name</label>
-          </div><!-- input -->
-      </div><!-- modal-content -->
-      <div class="modal-footer">
-        <a class="waves-effect waves-light btn" id="addTask">Add Task</a>
-      </div><!-- modal-footer -->
-    </div><!-- modalProject -->
+  </div>
+</div>
 
-    <!-- project-delete -->
-    <div id="modalDelete" class="modal">
-      <div class="modal-content">
-        <h4>Delete Project</h4>
-          <div class="input-field col s6">
-            <input id="delete_title" type="text" class="validate">
-            <label for="delete_title">Project Title</label>
-          </div><!-- input -->
-      </div><!-- modal-content -->
-      <div class="modal-footer">
-        <a class="waves-effect waves-light btn" id="deleteProject">Delete Project</a>
-      </div><!-- modal-footer -->
-    </div><!-- modalProject -->
+<footer class="page-footer teal lighten-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">trackHub</h5>
+        <p class="grey-text text-lighten-4">We're worth MILLIONS. Why wouldn't you want to know moe about our company? Drop us a line, only if you're feeling fine.</p>
 
-    <!-- project-manager -->
-    <div id="projectTasks" class="modal modalFull">
-      <div class="row center-align">
-        <div class="col m12 s12">
-        </br></br>
-          <a class="waves-effect waves-light btn green modal-trigger" href="#taskInfo">Add Task</a>
-          <a class="waves-effect waves-light btn red" id="removeTask">remove task</a>
-        </div><!-- col -->
-      </div><!-- row -->
-        <div class="row" id="projectManager">
-          <div class="col m4 l4" id="taskList">
-            <!-- toDoList -->
-            <ul class="collection">
-              <li class="collection-item"><h5>To Do</h5></li>
-              <!-- dynamic-content -->
-            </ul>
 
-          </div><!-- col -->
-          <div class="col m4 l4" id="doing">
-            <!-- doingList -->
-            <ul class="collection">
-              <li class="collection-item"><h5>Doing</h5></li>
-              <!-- dynamic content -->
-            </ul>
-
-          </div><!-- col -->
-          <div class="col m4 l4" id ="done">
-            <!-- doneList -->
-            <ul class="collection">
-              <li class="collection-item"><h5>Done</h5></li>
-              <!-- dynamic content -->
-            </ul>
-
-          </div><!-- col -->
-        </div><!-- row -->
-      </div><!-- modal -->
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Made by The Gordmon
+    </div>
+  </div>
+</footer>
 
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
