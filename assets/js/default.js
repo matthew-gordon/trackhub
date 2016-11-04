@@ -1,4 +1,5 @@
 'use strict';
+
 $(document).ready(function(){
 var projBoard = $('#projectBoard');
 var createProj = $('#createProject');
@@ -45,7 +46,6 @@ var repo, project, contents_url, data;
       titleField.val('');
       descriptionField.val('');
 
-
       // Add project card to board
       projBoard.append(
         '<div class="col s12 m4 l4">' +
@@ -80,14 +80,16 @@ var repo, project, contents_url, data;
 
   //Add tasks to task list
   addTask.click(function(){
+    var taskName = $('#taskName');
       taskList.append(
         '<li class="collection-item">' +
         '<div>' +
-        'Alvin' +
-        '<a href="#!" class="secondary-content"><i class="material-icons">send</i></a>' +
+          taskName.val() +
         '</div>' +
         '</li>'
       );
+      $('#taskInfo').closeModal();
+      taskName.val('');
   });
 
   // Github Authorization
@@ -122,7 +124,7 @@ var repo, project, contents_url, data;
       data = JSON.parse(localStorage.getItem('th_data'));
       repo = titleField.val();
       project = descriptionField.val();
-      repo = repo.replace(' ', '-');
+      repo = repo.replace(/\s+/g, '-');
       console.log(repo);
       $.ajax({
         url: 'https://api.github.com/user/repos',
@@ -156,11 +158,10 @@ var repo, project, contents_url, data;
 
   });
 
+  // Delete project
   function deleteProject() {
     data = JSON.parse(localStorage.getItem('th_data'));
-    var deleteProject = deleteTitle.val().replace(' ', '-');
-
-    console.log(deleteProject);
+    var deleteProject = deleteTitle.val().replace(/\s+/g, '-');
     $.ajax({
       url: 'https://api.github.com/repos/' + data.users[0].name + '/' + deleteProject,
       type: 'DELETE',
