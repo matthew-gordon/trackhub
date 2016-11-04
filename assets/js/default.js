@@ -9,6 +9,7 @@ var deleteTitle = $('#delete_title');
 var descriptionField = $('#textarea1');
 var taskList = $('#taskList>ul');
 var addTask = $('#addTask');
+var removeTask = $('#removeTask');
 var repo, project, contents_url, data;
 
   if(localStorage.length === 0) {
@@ -108,6 +109,11 @@ var repo, project, contents_url, data;
         $('#taskInfo').closeModal();
         taskName.val('');
     });
+  });
+
+  // Remove tasks from tasklist
+  removeTask.click(function(){
+    $('taskList>ul:last-child').remove();
   });
 
   // Github Authorization

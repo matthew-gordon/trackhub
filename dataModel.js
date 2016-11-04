@@ -1,5 +1,21 @@
 'use strict';
-var data;
+// Data model
+{
+  users : [
+    name: "",
+    authToken : ""
+    projects : {
+      {
+        name : "",
+        desc : "",
+        tasks : [
+          name : "",
+          desc : ""
+        ]
+      },
+    }
+  ]
+};
 
 // data model
 localStorage.setItem("th_data", JSON.stringify({}));
