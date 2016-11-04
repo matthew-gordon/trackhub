@@ -49,9 +49,9 @@ var repo, project, contents_url, data;
       // Add project card to board
       projBoard.append(
         '<div class="col s12 m4 l4">' +
-        '<div class="card">' +
+        '<div class="card z-depth-2">' +
         '<div class="card-image waves-effect waves-block waves-light">' +
-        '<img class="activator" src="assets/img/placeholder4.svg">' +
+        '<img class="activator" src="assets/img/github-mark.png">' +
         '</div><!-- card-image -->' +
         '<div class="card-content">' +
         '<span class="card-title activator grey-text text-darken-4">' +
@@ -208,7 +208,7 @@ var repo, project, contents_url, data;
             '<div class="col s12 m4 l4">' +
             '<div class="card">' +
             '<div class="card-image waves-effect waves-block waves-light">' +
-            '<img class="activator" src="assets/img/placeholder4.svg">' +
+            '<img class="activator" src="assets/img/github-mark.png">' +
             '</div><!-- card-image -->' +
             '<div class="card-content">' +
             '<span class="card-title activator grey-text text-darken-4">' +
