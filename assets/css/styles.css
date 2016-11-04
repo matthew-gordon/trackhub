@@ -36,7 +36,12 @@ body {
 }
 
 #banner {
-  background: url('../img/github-mark.png');
+  background:
+  linear-gradient(
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.45)
+  ),
+  url('../img/github-mark.png');
   background-repeat: no-repeat;
   background-size: contain;
   opacity: 0.5;
