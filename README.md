@@ -46,3 +46,9 @@
 	- role:string
 	
 ## Think through the pages I need in my application
+
+	- Home
+	- Projects#index
+	- Project#show
+	- Tasks#index
+	- Task#show
