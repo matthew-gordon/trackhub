@@ -18,6 +18,7 @@
 		- Tasks
 			- Priority level
 			- Task type
+			
 ## User Stories
 
 - As a user, I want to be able to create empty project so that I can work on the specific project.
