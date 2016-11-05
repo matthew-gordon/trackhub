@@ -1,4 +1,4 @@
-# Planning our application
+# Planning My application
 
 1. Answer questions
 	- What am I building?
@@ -29,7 +29,7 @@
 - As a user, I want to be able to create tasks inside of the project so that I can track work to be done, and stay organized.
 - As a user, I want to be able to assign the type of task, and priority level.
 
-## Modeling our Data
+## Modeling My Data
 
 1. **Project**
 	- title:string
@@ -44,3 +44,5 @@
 	- authToken:string
 	- projects:object
 	- role:string
+	
+## Think through the pages I need in my application
