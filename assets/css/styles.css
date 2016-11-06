@@ -12,6 +12,11 @@ body {
   background: #fff;
 }
 
+.addProject {
+    border: 5px dashed gainsboro;
+    height: 90vh;
+}
+
 .modalFull {
   width: 100%;
   height: 100vh;

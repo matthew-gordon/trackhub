@@ -29,13 +29,17 @@ var repo, project, contents_url, data;
     getAuth();
   });
 
+  $('#ghsubmitbtn').click(function(){
+    createWorkspace();
+  });
+
   // Create new project card
   createProj.click(function(){
     var projectTitle = titleField.val();
     var projectDescription = descriptionField.val();
 
       //Add project to Github
-      createProject();
+      createWorkspace();
 
       //Close project info
       $('#modalProject').closeModal();
@@ -90,25 +94,6 @@ var repo, project, contents_url, data;
     var apiurl = data.users[0].projects.project.url.replace('{+path}',filename + '.md');
     var filedata = '{"message":"'+filemessage+'","content":"'+basecontent+'"}';
 
-    $.ajax({
-        url: apiurl,
-        type: 'PUT',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
-        },
-        data: filedata
-    }).done(function(response) {
-        console.log(response);
-        taskList.append(
-          '<li class="collection-item">' +
-          '<div>' +
-            taskName.val() +
-          '</div>' +
-          '</li>'
-        );
-        $('#taskInfo').closeModal();
-        taskName.val('');
-    });
   });
 
   // Remove tasks from tasklist
@@ -133,40 +118,42 @@ var repo, project, contents_url, data;
 
       // Create user on auth
       data = JSON.parse(localStorage.getItem('th_data'));
-      data.users.push({
-        name : username,
-        authToken : token,
-        projects : {}
-      });
+      data.users.push({"name":username,"authToken":token,"projects": {}});
       localStorage.setItem("th_data", JSON.stringify(data));
       location.href = "project.html";
     });
   }
 
-  // Create project on Github
-  function createProject() {
+  // Create workspace
+  function createWorkspace() {
       data = JSON.parse(localStorage.getItem('th_data'));
-      repo = titleField.val();
       project = descriptionField.val();
-      repo = repo.replace(/\s+/g, '-');
       $.ajax({
         url: 'https://api.github.com/user/repos',
         type: 'POST',
         beforeSend: function(xhr) {
           xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
         },
-        data: '{"name": ' + JSON.stringify(repo) + ',"description":' + JSON.stringify(project) + ',"homepage": "https://trackerApp.com","auto_init":true}'
+        data: '{"name":"th_projects","description":"Datamodel for trackHub","homepage":"https://trackerApp.com","auto_init":true}'
       }).done(function(response) {
         contents_url = response.contents_url;
-        console.log(contents_url);
-        // Create project
-        data = JSON.parse(localStorage.getItem('th_data'));
-        data.users[0].projects[repo] = {
-            name : repo,
-            desc : project,
-            url : contents_url
-        };
-        localStorage.setItem("th_data", JSON.stringify(data));
+        var filename = $('#filename').val();
+        var filemessage = "Initialized trackHub project";
+        var filecontent = localStorage.th_data;
+        var basecontent = btoa(filecontent);
+        var apiurl = contents_url.replace('{+path}','th_data.json');
+        var filedata = '{"message":"'+filemessage+'","content":"'+basecontent+'"}';
+
+        $.ajax({
+            url: apiurl,
+            type: 'PUT',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
+            },
+            data: filedata
+        }).done(function(response) {
+            console.log(response);
+        });
       });
   }
 

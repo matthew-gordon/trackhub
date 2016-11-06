@@ -1,21 +1,30 @@
 'use strict';
-// Data model
+
+// User init
+{"users":[]}
+
+// User object
+{"name":"string","authToken":"string","projects":[]}
+
+// Project object
+{"name":"project1","desc":"textarea","tasks":[]}
+
+// Task object
+{"name":"string","desc":"textarea"}
+
+// Sample data model
+
 {
-  users : [
-    name: "",
-    authToken : ""
-    projects : {
-      {
-        name : "",
-        desc : "",
-        tasks : [
-          name : "",
-          desc : ""
-        ]
-      },
+  "users" : [
+    {"name" : "string","authToken" : "string","projects" : [
+      {"name" : "project1", "desc" : "textarea", "tasks" : [
+        {"name" : "task1", "desc" : "textarea"},
+        {"name" : "task1", "desc" : "textarea"}
+        ]}
+      ]
     }
   ]
-};
+}
 
 // data model
 localStorage.setItem("th_data", JSON.stringify({}));
