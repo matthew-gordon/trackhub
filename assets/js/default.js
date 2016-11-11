@@ -3,14 +3,11 @@
 $(document).ready(function(){
 var projBoard = $('#projectBoard');
 var createProj = $('#createProject');
+var projectTitle = $('#project_title');
 var deleteProj = $('#deleteProject');
-var titleField = $('#project_title');
-var deleteTitle = $('#delete_title');
-var descriptionField = $('#textarea1');
-var taskList = $('#taskList>ul');
-var addTask = $('#addTask');
-var removeTask = $('#removeTask');
-var repo, project, contents_url, data;
+var titleField = projectTitle;
+var projectDesc = $('#textarea1');
+var project, contents_url, data, gitResponse, _sha;
 
   if(localStorage.length === 0) {
      data = localStorage.setItem("th_data", JSON.stringify({users : []}));
@@ -20,6 +17,9 @@ var repo, project, contents_url, data;
 
   // Responsive menu
   $(".button-collapse").sideNav();
+
+  // Select box
+  $('select').material_select();
 
   // Modal trigger
   $('.modal-trigger').leanModal();
@@ -33,15 +33,16 @@ var repo, project, contents_url, data;
     createWorkspace();
   });
 
+
   // Create new project card
   createProj.click(function(){
     var projectTitle = titleField.val();
-    var projectDescription = descriptionField.val();
+    var projectDescription = projectDesc.val();
 
-      //Add project to Github
-      createWorkspace();
+      // Create Project in storage
+      createProject();
 
-      //Close project info
+      // Close project info
       $('#modalProject').closeModal();
 
       // Close project menu
@@ -49,7 +50,7 @@ var repo, project, contents_url, data;
 
       // Clear project form fields
       titleField.val('');
-      descriptionField.val('');
+      projectDesc.val('');
 
       // Add project card to board
       projBoard.append(
@@ -83,24 +84,6 @@ var repo, project, contents_url, data;
       $('.modal-trigger').leanModal();
   });
 
-  // Add tasks to task list
-  addTask.click(function(){
-    var taskName = $('#taskName');
-    var taskDesc = $('#taskDesc');
-    var filename = taskName.val();
-    var filemessage = "Added a new task, looks you're ... COMMITED ... to it..";
-    var filecontent = taskDesc.val();
-    var basecontent = btoa(filecontent);
-    var apiurl = data.users[0].projects.project.url.replace('{+path}',filename + '.md');
-    var filedata = '{"message":"'+filemessage+'","content":"'+basecontent+'"}';
-
-  });
-
-  // Remove tasks from tasklist
-  removeTask.click(function(){
-    $('taskList>ul:last-child').remove();
-  });
-
   // Github Authorization
   function getAuth() {
     var username = $("#username").val();
@@ -115,10 +98,10 @@ var repo, project, contents_url, data;
       data: '{"scopes":["repo", "delete_repo"],"note":"create/delete repo with ajax"}'
     }).done(function(response) {
       var token = response.token;
-
+      gitResponse = response;
       // Create user on auth
       data = JSON.parse(localStorage.getItem('th_data'));
-      data.users.push({"name":username,"authToken":token,"projects": {}});
+      data.users.push({"name":username,"authToken":token,"projects": []});
       localStorage.setItem("th_data", JSON.stringify(data));
       location.href = "project.html";
     });
@@ -127,7 +110,7 @@ var repo, project, contents_url, data;
   // Create workspace
   function createWorkspace() {
       data = JSON.parse(localStorage.getItem('th_data'));
-      project = descriptionField.val();
+      project = projectDesc.val();
       $.ajax({
         url: 'https://api.github.com/user/repos',
         type: 'POST',
@@ -137,12 +120,10 @@ var repo, project, contents_url, data;
         data: '{"name":"th_projects","description":"Datamodel for trackHub","homepage":"https://trackerApp.com","auto_init":true}'
       }).done(function(response) {
         contents_url = response.contents_url;
-        var filename = $('#filename').val();
-        var filemessage = "Initialized trackHub project";
-        var filecontent = localStorage.th_data;
+        var filecontent = JSON.stringify({"name":data.users[0].name,"projects":[]});
         var basecontent = btoa(filecontent);
         var apiurl = contents_url.replace('{+path}','th_data.json');
-        var filedata = '{"message":"'+filemessage+'","content":"'+basecontent+'"}';
+        var filedata = '{"message":"Initialized trackHub projects","content":"'+basecontent+'"}';
 
         $.ajax({
             url: apiurl,
@@ -152,9 +133,59 @@ var repo, project, contents_url, data;
             },
             data: filedata
         }).done(function(response) {
-            console.log(response);
+          localStorage.setItem('th_data', JSON.stringify(data));
+          console.log(response);
+          $('#projectBoard>div').addClass('addProject');
+          Materialize.toast('Workspace created! Add a new project.', 4000);
         });
       });
+  }
+
+  // Create project
+  function createProject(){
+
+    // Add data to local storage
+    data = JSON.parse(localStorage.getItem("th_data"));
+    data.users[0].projects.push({"name":projectTitle.val(),"desc":projectDesc.val(),"tasks":[]});
+    localStorage.setItem("th_data", JSON.stringify(data));
+
+    // Add data to github
+    $.ajax({
+      url : 'https://api.github.com/repos/redemption23/th_projects/contents/th_data.json',
+      type : 'GET',
+      beforeSend: function(xhr) {
+          xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
+      }
+    }).done(function(response) {
+      data = JSON.parse(localStorage.getItem("th_data"));
+      _sha = response.sha;
+      var filecontent = JSON.stringify({
+        "name":"name",
+        "projects": [{
+          "name":data.users[0].projects.name,
+          "desc":data.users[0].projects.desc,
+          "tasks":[]
+      }]
+    });
+      var basecontent = btoa(filecontent);
+      var filedata = '{"message":"Added new project","content":"'+basecontent+'","sha":"'+_sha+'"}';
+
+        $.ajax({
+          url : 'https://api.github.com/repos/redemption23/th_projects/contents/th_data.json',
+          type: 'PUT',
+          beforeSend: function(xhr) {
+              xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
+          },
+          data : filedata
+        }).done(function(response){
+          _sha = response.sha;
+          console.log(response);
+        });
+      });
+
+    $('#projectBoard>div').removeClass('addProject');
+    $('#w').empty();
+    Materialize.toast('New project added.', 4000);
   }
 
   // Delete project on Github
@@ -169,10 +200,11 @@ var repo, project, contents_url, data;
 
   });
 
+
   // Delete project
   function deleteProject() {
     data = JSON.parse(localStorage.getItem('th_data'));
-    var deleteProject = deleteTitle.val().replace(/\s+/g, '-');
+
     $.ajax({
       url: 'https://api.github.com/repos/' + data.users[0].name + '/' + deleteProject,
       type: 'DELETE',
@@ -180,8 +212,7 @@ var repo, project, contents_url, data;
           xhr.setRequestHeader("Authorization", "token " + data.users[0].authToken);
         }
       }).done(function() {
-      delete data.users[0].projects[deleteProject];
-      localStorage.setItem("th_data", JSON.stringify(data));
+
       projBoard.empty();
       popProj();
       console.log('repo was deleted!');
@@ -195,8 +226,9 @@ var repo, project, contents_url, data;
     // Check for users
     if(data.users.length > 0) {
      // check for projects
-      if(Object.keys(data.users[0].projects).length > 0) {
-        for ( var proj in data.users[0].projects ) {
+      if(data.users[0].projects.length > 0) {
+        $('#w').remove();
+        for ( var i = 0; i < data.users[0].projects.length; i++ ) {
           projBoard.append(
             '<div class="col s12 m4 l4">' +
             '<div class="card">' +
@@ -205,17 +237,17 @@ var repo, project, contents_url, data;
             '</div><!-- card-image -->' +
             '<div class="card-content">' +
             '<span class="card-title activator grey-text text-darken-4">' +
-            data.users[0].projects[proj].name +
+            data.users[0].projects[i].name +
             '<i class="material-icons right">more_vert</i></span>' +
             '</div><!-- card-content -->' +
             '<div class="card-reveal">' +
             '<div class="card-title">' +
             '<span class="card-title grey-text text-darken-4">' +
-            data.users[0].projects[proj].name +
+            data.users[0].projects[i].name +
             '<i class="material-icons right">close</i></span>' +
             '</div>' +
             '<div class="card-content">' +
-            '<p>' + data.users[0].projects[proj].desc + '</p>' +
+            '<p>' + data.users[0].projects[i].desc + '</p>' +
             '</div><!-- card-content -->' +
             '<div class="card-action">' +
             '<p class="center">' +
@@ -225,6 +257,8 @@ var repo, project, contents_url, data;
             '</div><!-- card -->' +
             '</div><!-- col -->'
           );
+          // Populate Delete list
+          $('#projectDeleteList>select').append('<option value="' + i + '">' + data.users[0].projects[i].name + '</option>');
         }
       } else {
         console.log('there are no projects for this user');

@@ -41,20 +41,18 @@
   <main>
     <section class="section">
       <div class="container">
-        <div class="row">
+        <div class="row center">
           <div class="col s12 m12">
             <div id="w">
-              <h1>Simple Github API Webapp</h1>
-              <p>Enter a single Github username below and click the button to display profile info via JSON.</p>
-
-              <input type="text" name="ghusername" id="ghusername" placeholder="Github username...">
+              <h1>Welcome to your Project Dashboard!</h1>
+              <p>Get started by creating your workspace!</p>
 
               <a href="#" id="ghsubmitbtn" class="btn">Create Workspace</a>
             </div>
           </div>
         </div>
         <div class="row center" id="projectBoard">
-          <div class="col s12 m12 l12 addProject valign-wrapper">
+          <div class="col s12 m12 l12 valign-wrapper">
             <!-- dynamic content-->
           </div><!-- col -->
         </div><!-- row -->
@@ -78,7 +76,7 @@
     </a>
     <ul>
       <li><a class="btn-floating green lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Create new project" href="#modalProject"><i class="material-icons">add</i></a></li>
-      <li><a class="btn-floating red lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Remove project" href="#modalDelete"><i class="material-icons">remove</i></a></li>
+      <li><a class="btn-floating red lighten-1 tooltipped modal-trigger" data-position="left" data-delay="50" data-tooltip="Remove project" href="#modalDelete" id="deleteProjects"><i class="material-icons">remove</i></a></li>
       <li><a class="btn-floating grey darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Log Out" id="logOut"><i class="material-icons"><i class="material-icons">supervisor_account</i></i></a></li>
     </ul>
   </div>
@@ -105,10 +103,13 @@
     <div id="modalDelete" class="modal">
       <div class="modal-content">
         <h4>Delete Project</h4>
-          <div class="input-field col s6">
-            <input id="delete_title" type="text" class="validate">
-            <label for="delete_title">Project Title</label>
-          </div><!-- input -->
+            <div class="input-field col s12" id="projectDeleteList">
+             <select multiple>
+               <option value="" disabled selected>Choose your option</option>
+                <!-- dynamic-content -->
+             </select>
+             <label>Select projects to delete</label>
+           </div><!-- input -->
       </div><!-- modal-content -->
       <div class="modal-footer">
         <a class="waves-effect waves-light btn" id="deleteProject">Delete Project</a>
