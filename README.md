@@ -52,3 +52,7 @@
 	- Project#show
 	- Tasks#index
 	- Task#show
+
+## Video Walkthrough
+
+[![Trackhub Landing Page](http://trackhub.surge.sh/assets/img/trackhub.png)](https://youtu.be/5fJ58aSm_i4)
